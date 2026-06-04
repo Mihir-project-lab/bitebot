@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Order } from '../../orders/entity/orders.entity';
+import { Recipe } from '../../recipes/entity/recipe.entity';
 
 @Entity()
 export class User {
@@ -15,6 +15,6 @@ export class User {
   @Column({ nullable: true })
   name?: string;
 
-  @OneToMany(() => Order, (order) => order.user)
-  orders!: Order[];
+  @OneToMany(() => Recipe, (recipe) => recipe.author)
+  recipes!: Recipe[];
 }
