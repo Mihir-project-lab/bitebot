@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { FoodModule } from './food/food.module';
-import { OrdersModule } from './orders/orders.module';
+import { RecipesModule } from './recipes/recipes.module';
+import { AiModule } from './ai/ai.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -18,8 +20,8 @@ import { UsersModule } from './users/users.module';
       synchronize: true, // ⚠️ only for dev
     }),
     AuthModule,
-    FoodModule,
-    OrdersModule,
+    RecipesModule,
+    AiModule,
     UsersModule,
   ],
 })
