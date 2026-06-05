@@ -17,7 +17,7 @@ import { UsersModule } from './users/users.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, // ⚠️ only for dev
+      synchronize: false, // ⚠️ only for dev
     }),
     AuthModule,
     RecipesModule,
