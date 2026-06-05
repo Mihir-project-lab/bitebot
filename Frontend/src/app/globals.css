@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+/* CRITICAL: Tell Tailwind v4 that dark: classes activate when .dark is on <html> */
+@variant dark (&:where(.dark, .dark *));
+
+/* ── Tailwind v4 design tokens ─────────────────────────── */
+@theme inline {
+  /* Fonts */
+  --font-sans:    'Karla', system-ui, sans-serif;
+  --font-display: 'Playfair Display SC', Georgia, serif;
+
+  /* Brand colours — cooking palette */
+  --color-brand-50:   #fff7ed;
+  --color-brand-100:  #ffedd5;
+  --color-brand-200:  #fed7aa;
+  --color-brand-300:  #fdba74;
+  --color-brand-400:  #fb923c;
+  --color-brand-500:  #f97316;
+  --color-brand-600:  #ea580c;
+  --color-brand-700:  #c2410c;
+  --color-brand-800:  #9a3412;
+  --color-brand-900:  #7c2d12;
+  --color-brand-950:  #431407;
+
+  /* Sidebar dark surface — grayish dark, not pure black */
+  --color-mahogany-950: #1e1a17;
+  --color-mahogany-900: #2a2420;
+  --color-mahogany-800: #3a3330;
+}
+
+/* ── Keyframe animations (referenced via Tailwind animate-*) ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@theme inline {
+  --animate-fade-up: fade-up 0.5s ease both;
+  --animate-float:   float 3.5s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+/* ── Base resets ─────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Thin scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #fed7aa; border-radius: 9999px; }
+.dark ::-webkit-scrollbar-thumb { background: #7c2d12; }
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection { background: #fed7aa; color: #7c2d12; }
+.dark ::selection { background: #7c2d12; color: #ffedd5; }
+
+/* ── Font-display helper (not a utility, just base) ───────── */
+.font-display { font-family: var(--font-display); }
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
