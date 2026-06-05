@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { Controller } from '@nestjs/common';
-
-@Controller('users')
-export class UsersController {}
-=======
 import { Controller, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 
@@ -16,4 +10,3 @@ export class UsersController {
     return this.usersService.getUsers();
   }
 }
->>>>>>> feat/crud-operations
