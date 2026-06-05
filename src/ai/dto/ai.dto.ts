@@ -1,5 +1,11 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsArray, IsOptional, IsString, ValidateNested, IsIn } from 'class-validator';
+import {
+  IsArray,
+  IsOptional,
+  IsString,
+  ValidateNested,
+  IsIn,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class SuggestRecipesDto {
@@ -10,32 +16,33 @@ export class SuggestRecipesDto {
   })
   @IsArray()
   @IsString({ each: true })
-  ingredients: string[];
+  ingredients!: string[];
 }
 
 export class GenerateRecipeDto {
   @ApiProperty({
-    example: 'A spicy Thai noodle dish with peanut sauce, ready in under 20 minutes',
+    example:
+      'A spicy Thai noodle dish with peanut sauce, ready in under 20 minutes',
     description: 'Describe the recipe you want to generate',
   })
   @IsString()
-  description: string;
+  description!: string;
 }
 
 export class ChatMessageDto {
   @ApiProperty({ enum: ['user', 'assistant'] })
   @IsIn(['user', 'assistant'])
-  role: 'user' | 'assistant';
+  role!: 'user' | 'assistant';
 
   @ApiProperty({ example: 'How do I make pasta from scratch?' })
   @IsString()
-  content: string;
+  content!: string;
 }
 
 export class ChatDto {
   @ApiProperty({ example: 'What can I make with eggs and cheese?' })
   @IsString()
-  message: string;
+  message!: string;
 
   @ApiPropertyOptional({
     type: [ChatMessageDto],
